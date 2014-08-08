@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         
         r.GET({(error: NSError?, headers: NSDictionary?, data: NSData?) -> () in
             
-            if (error) {
+            if let err = error {
                 println("Error: \(error!.localizedDescription)")
             } else {
                 

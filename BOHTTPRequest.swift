@@ -51,7 +51,9 @@ class BOHTTPRequest : NSObject, NSURLConnectionDelegate {
         
         var data = postString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         
-        self.request!.allHTTPHeaderFields = [ "Content-Length" : String(data.length) ]
+        var length:Int! = data?.length
+        
+        self.request!.allHTTPHeaderFields = [ "Content-Length" : length ]
         self.request!.HTTPBody = data
         
         self.start()
