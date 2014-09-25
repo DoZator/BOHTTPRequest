@@ -49,11 +49,9 @@ class BOHTTPRequest : NSObject, NSURLConnectionDelegate {
             postString += "\(key)=\(value)&"
         }
         
-        var data = postString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        var data : NSData = postString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!
         
-        var length:Int! = data?.length
-        
-        self.request!.allHTTPHeaderFields = [ "Content-Length" : length ]
+        self.request!.allHTTPHeaderFields = [ "Content-Length" : data.length ]
         self.request!.HTTPBody = data
         
         self.start()
@@ -63,7 +61,7 @@ class BOHTTPRequest : NSObject, NSURLConnectionDelegate {
         
         self.responseData = NSMutableData()
         
-        self.connection = NSURLConnection(request: self.request, delegate: self, startImmediately: false)
+        self.connection = NSURLConnection(request: self.request!, delegate: self, startImmediately: false)
         self.connection!.scheduleInRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
         self.connection!.start()
         

@@ -24,14 +24,16 @@ class ViewController: UIViewController {
         
         r.GET({(error: NSError?, headers: NSDictionary?, data: NSData?) -> () in
             
-            if let err = error {
-                println("Error: \(error!.localizedDescription)")
-            } else {
+            if let success = data {
                 
                 var error: NSError?
-                var json: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error)
+                var json: AnyObject! = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(0), error: &error)
                 
                 println("Recieved JSON: \(json)")
+                
+            } else {
+                
+                println("Error: \(error?.localizedDescription)")
             }
         })
     }
