@@ -23,7 +23,7 @@ class BOHTTPRequest : NSObject, NSURLConnectionDelegate {
     
     init(url: String) {
         
-        self.url = NSURL(string: url)
+        self.url = NSURL(string: url)!
     }
     
     func GET(completion: (NSError?, NSDictionary?, NSData?) -> ()) {
