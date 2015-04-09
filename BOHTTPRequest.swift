@@ -91,7 +91,7 @@ class BOHTTPRequest : NSObject, NSURLConnectionDelegate {
         completionBlock(nil, responseHeaders, responseData)
     }
     
-    func connection(connection: NSURLConnection!, didFailWithError error: NSError!) { 
+    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
         completionBlock(error, nil, nil)
     }
 }
